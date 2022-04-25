@@ -12,7 +12,6 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import lombok.Getter;
@@ -38,7 +37,7 @@ public class DataModel
      */
     private boolean initialized = false;
 
-    private final String START_KEY = "Internal_StartTime";
+    private final String START_TIME_KEY = "Internal_StartTime";
 
     public void init(Context context, SharedPreferences preferences)
     {
@@ -46,9 +45,9 @@ public class DataModel
 
         DataModel.preferences = preferences;
 
-        if (preferences.contains(START_KEY))
+        if (preferences.contains(START_TIME_KEY))
         {
-            val timestamp = preferences.getLong(START_KEY, 0);
+            val timestamp = preferences.getLong(START_TIME_KEY, 0);
             startTime = LocalDateTime.ofEpochSecond(timestamp, 0, ZoneOffset.UTC);
         }
 
@@ -69,7 +68,7 @@ public class DataModel
         if (time != null)
         {
             preferences.edit()
-                       .putLong(START_KEY, time.toEpochSecond(ZoneOffset.UTC))
+                       .putLong(START_TIME_KEY, time.toEpochSecond(ZoneOffset.UTC))
                        .apply();
         }
     }
@@ -86,7 +85,7 @@ public class DataModel
         startTime = null;
         endTime = null;
 
-        preferences.edit().remove(START_KEY).apply();
+        preferences.edit().remove(START_TIME_KEY).apply();
         return completable;
     }
 
