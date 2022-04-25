@@ -5,9 +5,6 @@
     <string name="analysis">Analysis</string>
     <string name="settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="welcome_morning">Good morning,\n%1$s.</string>
     <string name="welcome_afternoon">Good afternoon,\n%1$s.</string>
     <string name="welcome_evening">Good evening,\n%1$s.</string>
@@ -15,4 +12,10 @@
 
     <string name="sleeping_start">Start Sleeping</string>
     <string name="sleeping_end">End Sleeping</string>
+
+    <string name="sleeps">Sleeps</string>
+    <string name="average">Average</string>
+    <string name="daily">Daily</string>
+
+    <string name="sleeps_history">Sleeps History</string>
 </resources>
