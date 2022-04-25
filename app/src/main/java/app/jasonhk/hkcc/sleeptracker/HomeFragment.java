@@ -85,6 +85,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    /**
+     * Returns the resource ID of the welcome message determined by the time of day.
+     *
+     * @return The resource ID of the message.
+     */
     private int getWelcomeMessage()
     {
         val now = LocalTime.now();
