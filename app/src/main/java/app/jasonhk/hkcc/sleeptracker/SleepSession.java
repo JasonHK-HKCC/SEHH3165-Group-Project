@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 public class SleepSession
 {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo(name = "start_time")
