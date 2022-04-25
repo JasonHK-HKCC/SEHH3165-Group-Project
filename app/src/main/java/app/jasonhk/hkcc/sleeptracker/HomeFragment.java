@@ -27,8 +27,6 @@ import lombok.val;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener
 {
-    private AppDatabase database;
-
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -44,8 +42,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener
     {
         super.onViewCreated(view, savedInstanceState);
 
-        database = Room.databaseBuilder(getContext(), AppDatabase.class, AppDatabase.NAME).build();
-
         val preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         val name = preferences.getString("user_name", getString(R.string.user));
@@ -54,6 +50,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
         val sleepButton = (ExtendedFloatingActionButton) view.findViewById(R.id.sleep_button);
         sleepButton.setOnClickListener(this);
+        if (DataModel.isSessionStarted())
+        {
+            sleepButton.setText(R.string.sleeping_end);
+        }
+        else
+        {
+            sleepButton.setText(R.string.sleeping_start);
+        }
     }
 
     @Override
@@ -61,17 +65,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener
     {
         if (view.getId() == R.id.sleep_button)
         {
-            val session = new SleepSession();
-            session.startTime = LocalDateTime.now();
-            session.endTime = LocalDateTime.now();
+            val button = (ExtendedFloatingActionButton) view;
 
-            DataModel.insertSession(session);
+            if (DataModel.isSessionStarted())
+            {
+                DataModel.setEndTime(LocalDateTime.now());
+                DataModel.storeSession()
+                         .observeOn(AndroidSchedulers.mainThread())
+                         .subscribe(() -> {
+                             button.setText(R.string.sleeping_start);
+                         });
+            }
+            else
+            {
+                DataModel.setStartTime(LocalDateTime.now());
 
-            val s = DataModel.database.sleepSessionDao().getAll()
-                              .subscribeOn(Schedulers.io())
-                              .observeOn(AndroidSchedulers.mainThread())
-                              .subscribe((sleepSessions -> { ((ExtendedFloatingActionButton) view).setText(sleepSessions.get(0).startTime.toString()); }));
-//            ((ExtendedFloatingActionButton) view).setText(s.get(0).startTime.toString();
+                button.setText(R.string.sleeping_end);
+            }
         }
     }
 

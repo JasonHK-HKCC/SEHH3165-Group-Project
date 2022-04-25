@@ -5,17 +5,40 @@ import android.content.SharedPreferences;
 
 import androidx.room.Room;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.UtilityClass;
+import lombok.val;
 
 @UtilityClass
 public class DataModel
 {
-    private boolean initialized = false;
+    @Getter
+    private LocalDateTime startTime;
+
+    @Getter
+    @Setter
+    private LocalDateTime endTime;
 
     private SharedPreferences preferences;
     public AppDatabase database;
+
+    /**
+     * Indicate whether the class was initialized.
+     */
+    private boolean initialized = false;
+
+    private final String START_KEY = "Internal_StartTime";
 
     public void init(Context context, SharedPreferences preferences)
     {
@@ -23,17 +46,71 @@ public class DataModel
 
         DataModel.preferences = preferences;
 
+        if (preferences.contains(START_KEY))
+        {
+            val timestamp = preferences.getLong(START_KEY, 0);
+            startTime = LocalDateTime.ofEpochSecond(timestamp, 0, ZoneOffset.UTC);
+        }
+
         database = Room.databaseBuilder(context, AppDatabase.class, "database").build();
 
         initialized = true;
     }
 
-    public void insertSession(SleepSession session)
+    public boolean isSessionStarted()
     {
-//        database.sleepSessionDao().insert(session);
+        return (startTime != null);
+    }
 
-        database.sleepSessionDao().insert(session)
-                .subscribeOn(Schedulers.io())
-                .subscribe();
+    public void setStartTime(LocalDateTime time)
+    {
+        startTime = time;
+
+        if (time != null)
+        {
+            preferences.edit()
+                       .putLong(START_KEY, time.toEpochSecond(ZoneOffset.UTC))
+                       .apply();
+        }
+    }
+
+    public Completable storeSession()
+    {
+        val session = new SleepSession();
+        session.startTime = LocalDateTime.now();
+        session.endTime = LocalDateTime.now();
+
+        val completable = database.sleepSessionDao().insert(session)
+                                  .subscribeOn(Schedulers.io());
+
+        startTime = null;
+        endTime = null;
+
+        preferences.edit().remove(START_KEY).apply();
+        return completable;
+    }
+
+    public Completable insertSession(SleepSession session)
+    {
+        return database.sleepSessionDao().insert(session)
+                       .subscribeOn(Schedulers.io());
+    }
+
+    public Maybe<SleepSession> getSessionById(int id)
+    {
+        return database.sleepSessionDao().getById(id)
+                       .subscribeOn(Schedulers.io());
+    }
+
+    public Single<List<SleepSession>> getAllSessions()
+    {
+        return database.sleepSessionDao().getAll()
+                       .subscribeOn(Schedulers.io());
+    }
+
+    public Single<List<SleepSession>> getAllSessionsAfter(LocalDateTime time)
+    {
+        return database.sleepSessionDao().getAllAfter(time)
+                       .subscribeOn(Schedulers.io());
     }
 }
