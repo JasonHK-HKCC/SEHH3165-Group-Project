@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.room.Room;
@@ -52,10 +53,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         sleepButton.setOnClickListener(this);
         if (DataModel.isSessionStarted())
         {
+            sleepButton.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
             sleepButton.setText(R.string.sleeping_end);
         }
         else
         {
+            sleepButton.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
             sleepButton.setText(R.string.sleeping_start);
         }
     }
@@ -73,6 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 DataModel.storeSession()
                          .observeOn(AndroidSchedulers.mainThread())
                          .subscribe(() -> {
+                             button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
                              button.setText(R.string.sleeping_start);
                          });
             }
@@ -80,6 +84,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             {
                 DataModel.setStartTime(LocalDateTime.now());
 
+                button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
                 button.setText(R.string.sleeping_end);
             }
         }
