@@ -7,7 +7,7 @@ import androidx.room.TypeConverters;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(tableName = "sleep_sessions")
 public class SleepSession
 {
     @PrimaryKey(autoGenerate = true)

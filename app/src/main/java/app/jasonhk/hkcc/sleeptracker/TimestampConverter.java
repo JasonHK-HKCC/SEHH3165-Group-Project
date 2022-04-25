@@ -5,30 +5,22 @@ import androidx.room.TypeConverter;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 public class TimestampConverter
 {
     @TypeConverter
-    public static @Nullable LocalDateTime fromTimestamp(@Nullable String timestamp)
+    public static LocalDateTime fromTimestamp(long timestamp)
     {
-        if (timestamp != null)
-        {
-            return LocalDateTime.parse(timestamp);
-        }
-
-        return null;
+        return LocalDateTime.ofEpochSecond(timestamp, 0, ZoneOffset.UTC);
     }
 
     @TypeConverter
-    public static @Nullable String toTimestamp(@Nullable LocalDateTime time)
+    public static long toTimestamp(@NonNull LocalDateTime time)
     {
-        if (time != null)
-        {
-            return time.toString();
-        }
-
-        return null;
+        return time.toEpochSecond(ZoneOffset.UTC);
     }
 }

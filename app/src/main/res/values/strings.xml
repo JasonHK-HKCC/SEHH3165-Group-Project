@@ -5,6 +5,8 @@
     <string name="analysis">Analysis</string>
     <string name="settings">Settings</string>
 
+    <string name="user">User</string>
+
     <string name="welcome_morning">Good morning,\n%1$s.</string>
     <string name="welcome_afternoon">Good afternoon,\n%1$s.</string>
     <string name="welcome_evening">Good evening,\n%1$s.</string>

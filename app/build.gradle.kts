@@ -35,6 +35,9 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:1.18.22")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
 
+    implementation("io.reactivex.rxjava3:rxjava:3.1.4")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
+
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("com.google.android.material:material:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
@@ -44,6 +47,7 @@ dependencies {
     val roomVersion = "2.4.2"
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-rxjava3:$roomVersion")
 
     val nav_version = "2.4.1"
     implementation("androidx.navigation:navigation-fragment:$nav_version")

@@ -13,12 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.val;
 
 /**
  *
  */
-public class HomeFragment extends Fragment
+public class HomeFragment extends Fragment implements View.OnClickListener
 {
     private AppDatabase database;
 
@@ -41,8 +48,56 @@ public class HomeFragment extends Fragment
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        val name = preferences.getString("user_name", "");
+        val name = preferences.getString("user_name", getString(R.string.user));
         ((TextView) view.findViewById(R.id.welcome_message))
-                .setText(getString(R.string.welcome_night, name));
+                .setText(getString(getWelcomeMessage(), name));
+
+        val sleepButton = (ExtendedFloatingActionButton) view.findViewById(R.id.sleep_button);
+        sleepButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        if (view.getId() == R.id.sleep_button)
+        {
+            val session = new SleepSession();
+            session.startTime = LocalDateTime.now();
+            session.endTime = LocalDateTime.now();
+
+            DataModel.insertSession(session);
+
+            val s = DataModel.database.sleepSessionDao().getAll()
+                              .subscribeOn(Schedulers.io())
+                              .observeOn(AndroidSchedulers.mainThread())
+                              .subscribe((sleepSessions -> { ((ExtendedFloatingActionButton) view).setText(sleepSessions.get(0).startTime.toString()); }));
+//            ((ExtendedFloatingActionButton) view).setText(s.get(0).startTime.toString();
+        }
+    }
+
+    private int getWelcomeMessage()
+    {
+        val now = LocalTime.now();
+
+        if (now.isBefore(LocalTime.of(5, 0)))
+        {
+            return R.string.welcome_night;
+        }
+        else if (now.isBefore(LocalTime.NOON))
+        {
+            return R.string.welcome_morning;
+        }
+        else if (now.isBefore(LocalTime.of(17, 0)))
+        {
+            return R.string.welcome_afternoon;
+        }
+        else if (now.isBefore(LocalTime.of(21, 0)))
+        {
+            return R.string.welcome_evening;
+        }
+        else
+        {
+            return R.string.welcome_night;
+        }
     }
 }
