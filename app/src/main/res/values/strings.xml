@@ -19,5 +19,8 @@
     <string name="average">Average</string>
     <string name="daily">Daily</string>
 
-    <string name="sleeps_history">Sleeps History</string>
+    <string name="sleeps_history">Sleeps History </string>
+
+    <string name="date">Date</string>
+    <string name="sleep_hrs">Sleep Hours</string>
 </resources>
