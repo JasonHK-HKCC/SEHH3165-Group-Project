@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <SwitchPreferenceCompat
+        android:key="Type of music"
+        android:title="Music"
+        android:summary="You can choose your favourite white noise"/>
+
+    <Preference
+        android:key="timer"
+        android:title="Music Timer"
+        android:summary="You can change the length of  white noise"/>
+
 </PreferenceScreen>
