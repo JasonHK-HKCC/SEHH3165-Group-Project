@@ -2,9 +2,16 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreferenceCompat
+
+    <EditTextPreference
+        android:defaultValue=" "
+        android:key="add_name"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Please enter your name" />
+    <ListPreference
         android:key="Type of music"
-        android:title="Music"
+        android:title="White noise"
         android:summary="You can choose your favourite white noise"/>
 
     <Preference
