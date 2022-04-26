@@ -77,7 +77,7 @@ public class DataModel
     public Completable storeSession()
     {
         val session = new SleepSession();
-        session.startTime = LocalDateTime.now();
+        session.startTime = startTime;
         session.endTime = LocalDateTime.now();
 
         val completable = database.sleepSessionDao().insert(session)
