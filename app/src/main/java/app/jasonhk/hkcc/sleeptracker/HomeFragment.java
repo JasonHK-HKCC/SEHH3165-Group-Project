@@ -1,5 +1,6 @@
 package app.jasonhk.hkcc.sleeptracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -86,6 +87,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
                 button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
                 button.setText(R.string.sleeping_end);
+
+                val intent = new Intent(getContext(), WhiteNoiseService.class);
+                getActivity().startService(intent);
             }
         }
     }

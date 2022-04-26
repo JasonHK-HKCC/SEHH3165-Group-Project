@@ -8,6 +8,7 @@ import androidx.room.Room;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
@@ -76,7 +77,7 @@ public class DataModel
     public Completable storeSession()
     {
         val session = new SleepSession();
-        session.startTime = LocalDateTime.now();
+        session.startTime = startTime;
         session.endTime = LocalDateTime.now();
 
         val completable = database.sleepSessionDao().insert(session)
@@ -111,5 +112,11 @@ public class DataModel
     {
         return database.sleepSessionDao().getAllAfter(time)
                        .subscribeOn(Schedulers.io());
+    }
+
+    public String formatDuration(long seconds)
+    {
+        return String.format(Locale.getDefault(), "%d:%02d:%02d",
+                             seconds / 3600, (seconds % 3600) / 60, seconds % 60);
     }
 }
