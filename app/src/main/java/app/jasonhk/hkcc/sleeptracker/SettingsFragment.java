@@ -20,6 +20,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
             @Nullable Bundle savedInstanceState, @Nullable String rootKey)
     {
         // TODO: Add settings in preferences_user.xml
+
         setPreferencesFromResource(R.xml.preferences_user, rootKey);
     }
 }

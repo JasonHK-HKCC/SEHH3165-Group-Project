@@ -39,12 +39,14 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_beforeSleep"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="You're not sleeping, press start sleep to start record sleeps."
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <TextView
+                        android:id="@+id/tv_afterSleep"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="You have been in sleep for %s, since %s. Press end sleeping to stop record sleep."

@@ -42,6 +42,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             @NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+        TextView tv_beforeSleep = view.findViewById(R.id.tv_beforeSleep);
+        TextView tv_afterSleep = view.findViewById(R.id.tv_afterSleep);
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
@@ -55,17 +57,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         {
             sleepButton.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
             sleepButton.setText(R.string.sleeping_end);
+            tv_afterSleep.setVisibility(View.VISIBLE);
+            tv_beforeSleep.setVisibility(View.GONE);
         }
         else
         {
             sleepButton.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
             sleepButton.setText(R.string.sleeping_start);
+            tv_afterSleep.setVisibility(View.GONE);
+            tv_beforeSleep.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void onClick(View view)
     {
+        TextView tv_beforeSleep = getActivity().findViewById(R.id.tv_beforeSleep);
+        TextView tv_afterSleep = getActivity().findViewById(R.id.tv_afterSleep);
         if (view.getId() == R.id.sleep_button)
         {
             val button = (ExtendedFloatingActionButton) view;
@@ -78,6 +86,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                          .subscribe(() -> {
                              button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
                              button.setText(R.string.sleeping_start);
+                             tv_afterSleep.setVisibility(View.GONE);
+                             tv_beforeSleep.setVisibility(View.VISIBLE);
+
+
                          });
             }
             else
@@ -86,6 +98,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
                 button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
                 button.setText(R.string.sleeping_end);
+                tv_afterSleep.setVisibility(View.VISIBLE);
+                tv_beforeSleep.setVisibility(View.GONE);
             }
         }
     }
