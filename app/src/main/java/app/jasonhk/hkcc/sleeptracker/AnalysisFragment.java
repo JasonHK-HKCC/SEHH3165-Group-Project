@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import lombok.val;
@@ -39,5 +40,11 @@ public class AnalysisFragment extends Fragment
 
         TextView totalSleeps = view.findViewById(R.id.total_sleeps);
         totalSleeps.setText(String.valueOf(sessions.size()));
+
+        val totalTime = sessions.stream()
+                .mapToLong(session -> Duration.between(session.startTime, session.endTime).getSeconds())
+                .sum();
+        TextView averageTimeText = view.findViewById(R.id.average_time);
+        averageTimeText.setText(DataModel.formatDuration(totalTime / sessions.size()));
     }
 }
