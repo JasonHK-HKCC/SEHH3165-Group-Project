@@ -22,7 +22,7 @@
     <string name="sleeps_history">Sleeps History </string>
 
     <string name="date">Date</string>
-    <string name="sleep_hrs">Sleep Hours</string>
+    <string name="sleep_time">Sleep Time</string>
 
     <string-array name="noise_entries">
         <item >Dryer</item>
