@@ -1,5 +1,6 @@
 package app.jasonhk.hkcc.sleeptracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
+        TextView tv_beforeSleep = view.findViewById(R.id.tv_beforeSleep);
+        TextView tv_afterSleep = view.findViewById(R.id.tv_afterSleep);
+
         val name = preferences.getString("user_name", getString(R.string.user));
         ((TextView) view.findViewById(R.id.welcome_message))
                 .setText(getString(getWelcomeMessage(), name));
@@ -55,11 +59,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         {
             sleepButton.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
             sleepButton.setText(R.string.sleeping_end);
+
+            tv_afterSleep.setVisibility(View.VISIBLE);
+            tv_beforeSleep.setVisibility(View.GONE);
         }
         else
         {
             sleepButton.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
             sleepButton.setText(R.string.sleeping_start);
+
+            tv_afterSleep.setVisibility(View.GONE);
+            tv_beforeSleep.setVisibility(View.VISIBLE);
         }
     }
 
@@ -70,6 +80,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         {
             val button = (ExtendedFloatingActionButton) view;
 
+            TextView tv_beforeSleep = getActivity().findViewById(R.id.tv_beforeSleep);
+            TextView tv_afterSleep = getActivity().findViewById(R.id.tv_afterSleep);
+
             if (DataModel.isSessionStarted())
             {
                 DataModel.setEndTime(LocalDateTime.now());
@@ -78,6 +91,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                          .subscribe(() -> {
                              button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
                              button.setText(R.string.sleeping_start);
+
+                             tv_afterSleep.setVisibility(View.GONE);
+                             tv_beforeSleep.setVisibility(View.VISIBLE);
+
+                             getActivity().stopService(new Intent(getContext(), MusicService.class));
                          });
             }
             else
@@ -86,6 +104,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
                 button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
                 button.setText(R.string.sleeping_end);
+
+                tv_afterSleep.setVisibility(View.VISIBLE);
+                tv_beforeSleep.setVisibility(View.GONE);
+                
+                getActivity().startService(new Intent(getContext(), MusicService.class));
             }
         }
     }
