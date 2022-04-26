@@ -8,7 +8,7 @@ import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 
-public class WhiteNoiseService extends Service implements MediaPlayer.OnPreparedListener
+public class MusicService extends Service implements MediaPlayer.OnPreparedListener
 {
     MediaPlayer mediaPlayer = null;
 
@@ -24,7 +24,8 @@ public class WhiteNoiseService extends Service implements MediaPlayer.OnPrepared
     {
         super.onCreate();
 
-        mediaPlayer = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
+        mediaPlayer = MediaPlayer.create(this, R.raw.music_rain);
+        mediaPlayer.setLooping(true);
     }
 
     public int onStartCommand(Intent intent, int flags, int startId)

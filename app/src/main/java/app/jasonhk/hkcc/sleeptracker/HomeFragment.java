@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
-import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.val;
 
 /**
@@ -79,6 +77,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                          .subscribe(() -> {
                              button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_play));
                              button.setText(R.string.sleeping_start);
+
+                             getActivity().stopService(new Intent(getContext(), MusicService.class));
                          });
             }
             else
@@ -88,8 +88,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 button.setIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_stop));
                 button.setText(R.string.sleeping_end);
 
-                val intent = new Intent(getContext(), WhiteNoiseService.class);
-                getActivity().startService(intent);
+                getActivity().startService(new Intent(getContext(), MusicService.class));
             }
         }
     }
