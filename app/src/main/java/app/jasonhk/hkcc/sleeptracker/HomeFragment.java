@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
                 tv_afterSleep.setVisibility(View.VISIBLE);
                 tv_beforeSleep.setVisibility(View.GONE);
-                
+
                 getActivity().startService(new Intent(getContext(), MusicService.class));
             }
         }
