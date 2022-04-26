@@ -47,7 +47,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="You have been in sleep for %s"
+                        android:text="You have been in sleep for %s, since %s. Press end sleeping to stop record sleep."
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
