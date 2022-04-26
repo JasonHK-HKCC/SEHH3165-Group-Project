@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 /**
  *
  */
-public class SettingsFragment extends PreferenceFragmentCompat
-{
+public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(
-            @Nullable Bundle savedInstanceState, @Nullable String rootKey)
-    {
+            @Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         // TODO: Add settings in preferences_user.xml
 
         setPreferencesFromResource(R.xml.preferences_user, rootKey);

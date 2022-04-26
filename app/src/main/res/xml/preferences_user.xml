@@ -5,18 +5,20 @@
 
     <EditTextPreference
         android:defaultValue=" "
-        android:key="add_name"
+        android:key="user_name"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Please enter your name" />
+
     <ListPreference
-        android:key="Type of music"
+        android:key="Type of white noise"
         android:title="White noise"
-        android:summary="You can choose your favourite white noise"/>
+        android:summary="You can choose your favourite white noise"
+        android:entries="@array/noise_entries" android:entryValues="@array/noise_values" />
 
     <Preference
         android:key="timer"
-        android:title="Music Timer"
+        android:title="White Noise Timer"
         android:summary="You can change the length of  white noise"/>
 
 </PreferenceScreen>

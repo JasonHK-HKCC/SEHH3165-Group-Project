@@ -23,4 +23,19 @@
 
     <string name="date">Date</string>
     <string name="sleep_hrs">Sleep Hours</string>
+
+    <string-array name="noise_entries">
+        <item >Dryer</item>
+        <item >Heater</item>
+        <item >Rain</item>
+        <item >Stream</item>
+        <item >White Noise</item>
+    </string-array>
+    <string-array name="noise_values" translatable="false">
+        <item>music_dryer</item>
+        <item>music_heater</item>
+        <item>music_rain</item>
+        <item>music_stream</item>
+        <item>music_white_noise</item>
+    </string-array>
 </resources>
