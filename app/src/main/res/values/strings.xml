@@ -34,4 +34,6 @@
     <string name="noise_type_default" translatable="false">white_noise</string>
     <string name="noise_timer">Sleep Timer</string>
     <string name="noise_timer_default" translatable="false">30_minutes</string>
+
+
 </resources>
