@@ -5,8 +5,6 @@
     <string name="analysis">Analysis</string>
     <string name="settings">Settings</string>
 
-    <string name="user">User</string>
-
     <string name="welcome_morning">Good morning,\n%1$s.</string>
     <string name="welcome_afternoon">Good afternoon,\n%1$s.</string>
     <string name="welcome_evening">Good evening,\n%1$s.</string>
@@ -20,22 +18,20 @@
     <string name="daily">Daily</string>
 
     <string name="sleeps_history">Sleeps History</string>
+    <string name="started_on">Started on</string>
+    <string name="stopped_on">Stopped on</string>
+    <string name="slept_for">Slept for</string>
 
     <string name="date">Date</string>
     <string name="sleep_time">Sleep Time</string>
 
-    <string-array name="noise_entries">
-        <item >Dryer</item>
-        <item >Heater</item>
-        <item >Rain</item>
-        <item >Stream</item>
-        <item >White Noise</item>
-    </string-array>
-    <string-array name="noise_values" translatable="false">
-        <item>music_dryer</item>
-        <item>music_heater</item>
-        <item>music_rain</item>
-        <item>music_stream</item>
-        <item>music_white_noise</item>
-    </string-array>
+    <string name="user">User</string>
+    <string name="user_name">Name</string>
+    <string name="user_name_default">User</string>
+
+    <string name="noise">Noise</string>
+    <string name="noise_type">Noise Type</string>
+    <string name="noise_type_default" translatable="false">white_noise</string>
+    <string name="noise_timer">Sleep Timer</string>
+    <string name="noise_timer_default" translatable="false">30_minutes</string>
 </resources>

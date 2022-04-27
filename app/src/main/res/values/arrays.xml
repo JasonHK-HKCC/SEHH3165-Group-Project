@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="noise_values" translatable="false">
+        <item>white_noise</item>
+        <item>dryer</item>
+        <item>heater</item>
+        <item>rain</item>
+        <item>stream</item>
+    </string-array>
+    <string-array name="noise_entries">
+        <item>White Noise</item>
+        <item>Dryer</item>
+        <item>Heater</item>
+        <item>Rain</item>
+        <item>Stream</item>
+    </string-array>
+
+    <string-array name="timer_values" translatable="false">
+        <item>15_minutes</item>
+        <item>30_minutes</item>
+        <item>1_hour</item>
+    </string-array>
+    <string-array name="timer_entries">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+    </string-array>
 </resources>

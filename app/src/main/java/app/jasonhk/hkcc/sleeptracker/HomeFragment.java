@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         TextView tv_beforeSleep = view.findViewById(R.id.tv_beforeSleep);
         TextView tv_afterSleep = view.findViewById(R.id.tv_afterSleep);
 
-        val name = preferences.getString("user_name", getString(R.string.user));
+        val name = preferences.getString("user_name", getString(R.string.user_name_default));
         ((TextView) view.findViewById(R.id.welcome_message))
                 .setText(getString(getWelcomeMessage(), name));
 
