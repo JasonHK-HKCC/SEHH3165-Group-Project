@@ -117,7 +117,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
                 val intent = new Intent(getContext(), NoiseService.class)
                         .putExtra("noise_type", preferences.getString(
-                                "noise_type", getString(R.string.noise_type_default)));
+                                "noise_type", getString(R.string.noise_type_default)))
+                        .putExtra("noise_timer", getNoiseTimer());
                 getActivity().startService(intent);
             }
         }
@@ -151,6 +152,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         else
         {
             return R.string.welcome_night;
+        }
+    }
+
+    private long getNoiseTimer()
+    {
+        switch (preferences.getString("noise_timer", getString(R.string.noise_timer_default)))
+        {
+            case "5_minutes":
+                return 300_000;
+            case "10_minutes":
+                return 600_000;
+            case "15_minutes":
+                return 900_000;
+            case "30_minutes":
+                return 1_800_000;
+            case "1_hour":
+                return 3_600_000;
+            case "2_hours":
+                return 7_200_000;
+            default:
+                return 0;
         }
     }
 }

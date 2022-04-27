@@ -33,7 +33,7 @@
         <item>15_minutes</item>
         <item>30_minutes</item>
         <item>1_hour</item>
-        <item>2_hour</item>
+        <item>2_hours</item>
     </string-array>
     <string-array name="timer_entries">
         <item>5 minutes</item>
@@ -41,6 +41,6 @@
         <item>15 minutes</item>
         <item>30 minutes</item>
         <item>1 hour</item>
-        <item>2 hour</item>
+        <item>2 hours</item>
     </string-array>
 </resources>
