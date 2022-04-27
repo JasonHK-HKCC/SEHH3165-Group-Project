@@ -35,6 +35,7 @@ public class NoiseService extends Service implements MediaPlayer.OnPreparedListe
     public int onStartCommand(Intent intent, int flags, int startId)
     {
         val type = NoiseType.from(intent.getStringExtra("noise_type"));
+        val length = intent.getLongExtra("noise_timer", 10000);
 
         mediaPlayer = MediaPlayer.create(this, type.getNoise());
         mediaPlayer.setLooping(true);
@@ -43,7 +44,7 @@ public class NoiseService extends Service implements MediaPlayer.OnPreparedListe
         timer.schedule(new TimerTask() {
             @Override
             public void run() { stopSelf(); }
-        }, 10000);
+        }, length);
 
         return Service.START_STICKY;
     }
