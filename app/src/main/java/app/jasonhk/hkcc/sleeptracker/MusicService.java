@@ -8,9 +8,14 @@ import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MusicService extends Service implements MediaPlayer.OnPreparedListener
 {
-    MediaPlayer mediaPlayer = null;
+    private static Timer timer = new Timer();
+
+    private MediaPlayer mediaPlayer = null;
 
     @Nullable
     @Override
@@ -36,6 +41,11 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
         mediaPlayer.start();
 
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() { stopSelf(); }
+        }, 10000);
+
         return Service.START_STICKY;
     }
 
@@ -48,6 +58,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     @Override
     public void onDestroy()
     {
+        timer.cancel();
+
         mediaPlayer.stop();
         mediaPlayer.release();
     }

@@ -5,19 +5,16 @@
       <map>
         <entry key="..\:/Users/Cave/AndroidStudioProjects/SEHH3165-Group-Project/app/src/main/res/layout/fragment_home.xml" value="0.33425925925925926" />
         <entry key="..\:/Users/Cave/AndroidStudioProjects/SEHH3165-Group-Project/app/src/main/res/xml/preferences_user.xml" value="0.5" />
-        <entry key="..\:/Users/kongp/AndroidStudioProjects/SEHH3165-Group-Project/app/src/main/res/layout/fragment_analysis.xml" value="0.375" />
-        <entry key="..\:/Users/kongp/AndroidStudioProjects/SEHH3165-Group-Project/app/src/main/res/layout/fragment_home.xml" value="0.275" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27717391304347827" />
         <entry key="app/src/main/res/layout/fragment_analysis.xml" value="0.27717391304347827" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.27717391304347827" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.27717391304347827" />
-        <entry key="app/src/main/res/layout/recycler_sleep_session.xml" value="0.25256410256410255" />
+        <entry key="app/src/main/res/layout/recycler_sleep_session.xml" value="0.6224899598393574" />
         <entry key="app/src/main/res/menu/menu_navigation.xml" value="2.1107142857142858" />
         <entry key="app/src/main/res/xml/preferences_user.xml" value="0.27717391304347827" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
