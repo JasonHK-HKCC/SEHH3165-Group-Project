@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
-import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.val;
 
 /**
@@ -98,7 +96,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                              tv_afterSleep.setVisibility(View.GONE);
                              tv_beforeSleep.setVisibility(View.VISIBLE);
 
-                             getActivity().stopService(new Intent(getContext(), MusicService.class));
+                             getActivity().stopService(new Intent(getContext(), NoiseService.class));
                          });
             }
             else
@@ -111,7 +109,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 tv_afterSleep.setVisibility(View.VISIBLE);
                 tv_beforeSleep.setVisibility(View.GONE);
 
-                val intent = new Intent(getContext(), MusicService.class)
+                val intent = new Intent(getContext(), NoiseService.class)
                         .putExtra("noise_type", preferences.getString(
                                 "noise_type", getString(R.string.noise_type_default)));
                 getActivity().startService(intent);

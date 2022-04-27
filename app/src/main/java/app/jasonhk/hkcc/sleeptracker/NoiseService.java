@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 import lombok.val;
 
-public class MusicService extends Service implements MediaPlayer.OnPreparedListener
+public class NoiseService extends Service implements MediaPlayer.OnPreparedListener
 {
     private Timer timer = null;
     private MediaPlayer mediaPlayer = null;
@@ -29,7 +29,6 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     public void onCreate()
     {
         super.onCreate();
-
         timer = new Timer();
     }
 
