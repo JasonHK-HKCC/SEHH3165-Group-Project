@@ -11,10 +11,11 @@ import androidx.annotation.Nullable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lombok.val;
+
 public class MusicService extends Service implements MediaPlayer.OnPreparedListener
 {
-    private static Timer timer = new Timer();
-
+    private Timer timer = null;
     private MediaPlayer mediaPlayer = null;
 
     @Nullable
@@ -29,16 +30,15 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     {
         super.onCreate();
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music_rain);
-        mediaPlayer.setLooping(true);
+        timer = new Timer();
     }
 
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-//        mediaPlayer = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
-//        mediaPlayer.setOnPreparedListener(this);
-//        mediaPlayer.prepareAsync();
+        val type = NoiseType.from(intent.getStringExtra("noise_type"));
 
+        mediaPlayer = MediaPlayer.create(this, type.getNoise());
+        mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
         timer.schedule(new TimerTask() {

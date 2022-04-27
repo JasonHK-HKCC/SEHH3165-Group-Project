@@ -1,6 +1,7 @@
 package app.jasonhk.hkcc.sleeptracker;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,8 @@ import lombok.val;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener
 {
+    private SharedPreferences preferences;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -44,7 +47,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
     {
         super.onViewCreated(view, savedInstanceState);
 
-        val preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         TextView tv_beforeSleep = view.findViewById(R.id.tv_beforeSleep);
         TextView tv_afterSleep = view.findViewById(R.id.tv_afterSleep);
@@ -108,7 +111,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 tv_afterSleep.setVisibility(View.VISIBLE);
                 tv_beforeSleep.setVisibility(View.GONE);
 
-                getActivity().startService(new Intent(getContext(), MusicService.class));
+                val intent = new Intent(getContext(), MusicService.class)
+                        .putExtra("noise_type", preferences.getString(
+                                "noise_type", getString(R.string.noise_type_default)));
+                getActivity().startService(intent);
             }
         }
     }
