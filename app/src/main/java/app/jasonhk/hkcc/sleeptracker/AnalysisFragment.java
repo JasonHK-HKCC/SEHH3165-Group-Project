@@ -48,8 +48,12 @@ public class AnalysisFragment extends Fragment
         val totalTime = sessions.stream()
                 .mapToLong(session -> Duration.between(session.startTime, session.endTime).getSeconds())
                 .sum();
+
         TextView averageTimeText = view.findViewById(R.id.average_time);
         averageTimeText.setText(DataModel.formatDuration((totalSleeps == 0) ? 0 : totalTime / totalSleeps));
+
+        TextView dailyTimeValue = view.findViewById(R.id.daily_time);
+        dailyTimeValue.setText(DataModel.formatDuration(totalTime / 7));
 
         RecyclerView historyRecycler = view.findViewById(R.id.sleep_history_recycler);
         historyRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
