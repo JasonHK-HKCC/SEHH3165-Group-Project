@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="noise_values" translatable="false">\
-        <item>music_dryer</item>
-        <item>music_heater</item>
-        <item>music_rain</item>
-        <item>music_stream</item>
-        <item>music_white_noise</item>
-        <item>music_both_of_us</item>
-        <item>music_mindfulness</item>
-        <item>music_morning_garden</item>
-        <item>music_order</item>
-        <item>music_showreel</item>
-        <item>music_soul</item>
+        <item>dryer</item>
+        <item>heater</item>
+        <item>rain</item>
+        <item>stream</item>
+        <item>white_noise</item>
+        <item>both_of_us</item>
+        <item>mindfulness</item>
+        <item>morning_garden</item>
+        <item>order</item>
+        <item>showreel</item>
+        <item>soul</item>
     </string-array>
     <string-array name="noise_entries">
-        <item >Dryer</item>
-        <item >Heater</item>
-        <item >Rain</item>
-        <item >Stream</item>
-        <item >White Noise</item>
-        <item >Both of us</item>
-        <item >Mindfulness</item>
-        <item >Morning Garden</item>
-        <item >Order</item>
-        <item >Show Reel</item>
-        <item >Soul</item>
+        <item>Dryer</item>
+        <item>Heater</item>
+        <item>Rain</item>
+        <item>Stream</item>
+        <item>White Noise</item>
+        <item>Both of us</item>
+        <item>Mindfulness</item>
+        <item>Morning Garden</item>
+        <item>Order</item>
+        <item>Show Reel</item>
+        <item>Soul</item>
     </string-array>
 
     <string-array name="timer_values" translatable="false">
