@@ -9,7 +9,13 @@ public enum NoiseType
     DRYER("dryer", R.raw.music_dryer),
     HEATER("heater", R.raw.music_heater),
     RAIN("rain", R.raw.music_rain),
-    STREAM("stream", R.raw.music_stream);
+    STREAM("stream", R.raw.music_stream),
+    BOTH_OF_US("both_of_us", R.raw.music_both_of_us),
+    MINDFULNESS("mindfulness", R.raw.music_mindfulness),
+    MORNING_GARDEN("morning_garden", R.raw.music_morning_garden),
+    ORDER("order", R.raw.music_order),
+    SHOWREEL("showreel", R.raw.music_showreel),
+    SOUL("soul", R.raw.muisc_soul);
 
     @Getter
     final String key;
