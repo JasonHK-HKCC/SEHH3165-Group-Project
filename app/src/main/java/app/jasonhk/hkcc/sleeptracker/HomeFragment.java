@@ -19,6 +19,8 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import lombok.val;
@@ -28,6 +30,8 @@ import lombok.val;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener
 {
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+
     private SharedPreferences preferences;
 
     @Override
@@ -62,6 +66,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             sleepButton.setText(R.string.sleeping_end);
 
             tv_afterSleep.setVisibility(View.VISIBLE);
+            tv_afterSleep.setText(getString(R.string.help_sleeping, DataModel.getStartTime().format(formatter)));
             tv_beforeSleep.setVisibility(View.GONE);
         }
         else
@@ -107,6 +112,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 button.setText(R.string.sleeping_end);
 
                 tv_afterSleep.setVisibility(View.VISIBLE);
+                tv_afterSleep.setText(getString(R.string.help_sleeping, DataModel.getStartTime().format(formatter)));
                 tv_beforeSleep.setVisibility(View.GONE);
 
                 val intent = new Intent(getContext(), NoiseService.class)
