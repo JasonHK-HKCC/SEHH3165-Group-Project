@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  xmlns:tools="http://schemas.android.com/tools">
 
 
-    <EditTextPreference
-        android:defaultValue=" "
-        android:key="user_name"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="Please enter your name" />
+    <EditTextPreference android:defaultValue="User"
+                        android:key="user_name"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="true"
+                        android:title="Please enter your name" />
 
-    <ListPreference
-        android:key="Type of white noise"
-        android:title="White noise"
-        android:summary="You can choose your favourite white noise"
-        android:entries="@array/noise_entries" android:entryValues="@array/noise_values" />
+    <ListPreference android:entries="@array/noise_entries"
+                    android:entryValues="@array/noise_values"
+                    android:key="Type of white noise"
+                    android:summary="You can choose your favourite white noise"
+                    android:title="White noise" />
 
-    <Preference
-        android:key="timer"
-        android:title="White Noise Timer"
-        android:summary="You can change the length of  white noise"/>
+    <Preference android:key="timer"
+                android:summary="You can change the length of  white noise"
+                android:title="White Noise Timer" />
 
 </PreferenceScreen>

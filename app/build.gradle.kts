@@ -30,13 +30,15 @@ android {
 
 dependencies {
     implementation("org.projectlombok:lombok:1.18.22")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     annotationProcessor("org.projectlombok:lombok:1.18.22")
     testCompileOnly("org.projectlombok:lombok:1.18.22")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
 
     implementation("io.reactivex.rxjava3:rxjava:3.1.4")
     implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
+
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.core:core:1.6.0")
 
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("com.google.android.material:material:1.5.0")
