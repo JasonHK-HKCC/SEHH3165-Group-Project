@@ -8,7 +8,8 @@
         android:key="user_name"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Please enter your name" />
+        android:title="Username"
+        android:summary="Please enter your name" />
 
     <ListPreference
         android:key="Type of white noise"
