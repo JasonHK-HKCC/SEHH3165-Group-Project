@@ -8,6 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.Duration;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 import lombok.val;
@@ -46,8 +49,12 @@ public class SleepsHistoryAdapter extends RecyclerView.Adapter<SleepsHistoryAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
+        private static DateTimeFormatter formatter =
+                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+
         TextView startTimeValue;
         TextView stopTimeValue;
+        TextView sleepTimeValue;
 
         public ViewHolder(View view)
         {
@@ -55,12 +62,14 @@ public class SleepsHistoryAdapter extends RecyclerView.Adapter<SleepsHistoryAdap
 
             startTimeValue = view.findViewById(R.id.start_time_value);
             stopTimeValue = view.findViewById(R.id.stop_time_value);
+            sleepTimeValue = view.findViewById(R.id.sleep_time_value);
         }
 
         public void setSession(SleepSession session)
         {
-            startTimeValue.setText(session.startTime.toString());
-            stopTimeValue.setText(session.endTime.toString());
+            startTimeValue.setText(session.startTime.format(formatter));
+            stopTimeValue.setText(session.endTime.format(formatter));
+            sleepTimeValue.setText(DataModel.formatDuration(Duration.between(session.startTime, session.endTime).getSeconds()));
         }
     }
 }
