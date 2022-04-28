@@ -13,6 +13,8 @@ import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -28,7 +30,8 @@ import lombok.val;
 /**
  *
  */
-public class HomeFragment extends Fragment implements View.OnClickListener
+public class HomeFragment extends Fragment
+        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener
 {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
 
@@ -57,6 +60,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         val name = preferences.getString("user_name", getString(R.string.user_name_default));
         ((TextView) view.findViewById(R.id.welcome_message))
                 .setText(getString(getWelcomeMessage(), name));
+
+        CheckBox playNoise = view.findViewById(R.id.play_noise);
+        playNoise.setChecked(preferences.getBoolean("noise_play", true));
+        playNoise.setOnCheckedChangeListener(this);
 
         val sleepButton = (ExtendedFloatingActionButton) view.findViewById(R.id.sleep_button);
         sleepButton.setOnClickListener(this);
@@ -89,6 +96,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             TextView tv_beforeSleep = getActivity().findViewById(R.id.tv_beforeSleep);
             TextView tv_afterSleep = getActivity().findViewById(R.id.tv_afterSleep);
 
+            CheckBox playNoise = getActivity().findViewById(R.id.play_noise);
+
             if (DataModel.isSessionStarted())
             {
                 DataModel.setEndTime(LocalDateTime.now());
@@ -101,7 +110,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                              tv_afterSleep.setVisibility(View.GONE);
                              tv_beforeSleep.setVisibility(View.VISIBLE);
 
-                             getActivity().stopService(new Intent(getContext(), NoiseService.class));
+                             playNoise.setEnabled(true);
+                             if (playNoise.isChecked())
+                             {
+                                 getActivity().stopService(new Intent(getContext(), NoiseService.class));
+                             }
                          });
             }
             else
@@ -115,12 +128,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 tv_afterSleep.setText(getString(R.string.help_sleeping, DataModel.getStartTime().format(formatter)));
                 tv_beforeSleep.setVisibility(View.GONE);
 
-                val intent = new Intent(getContext(), NoiseService.class)
-                        .putExtra("noise_type", preferences.getString(
-                                "noise_type", getString(R.string.noise_type_default)))
-                        .putExtra("noise_timer", getNoiseTimer());
-                getActivity().startService(intent);
+                playNoise.setEnabled(false);
+                if (playNoise.isChecked())
+                {
+                    val intent = new Intent(getContext(), NoiseService.class)
+                            .putExtra("noise_type", preferences.getString(
+                                    "noise_type", getString(R.string.noise_type_default)))
+                            .putExtra("noise_timer", getNoiseTimer());
+                    getActivity().startService(intent);
+                }
             }
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton button, boolean checked)
+    {
+        if (button.getId() == R.id.play_noise)
+        {
+            preferences.edit()
+                       .putBoolean("noise_play", checked)
+                       .apply();
         }
     }
 

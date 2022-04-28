@@ -13,6 +13,8 @@
     <string name="help_not_sleeping">You\'re not sleeping, press \"start sleeping\" to start recording sleeps.</string>
     <string name="help_sleeping">You have been in sleep since %1$s.\n\nPress \"end sleeping\" to stop recording sleep.</string>
 
+    <string name="play_noise">Play noise</string>
+
     <string name="sleeping_start">Start Sleeping</string>
     <string name="sleeping_end">End Sleeping</string>
 

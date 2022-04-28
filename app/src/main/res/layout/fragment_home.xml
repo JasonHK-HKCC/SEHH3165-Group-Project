@@ -11,20 +11,21 @@
         android:layout_height="wrap_content"
         android:fillViewport="true"
         android:scrollbars="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/welcome_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:layout_marginTop="16dp"
                 android:text="@string/welcome_night"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 tools:text="@string/welcome_night" />
 
             <androidx.cardview.widget.CardView
@@ -35,8 +36,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:id="@+id/tv_beforeSleep"
@@ -52,6 +53,13 @@
                         android:text="@string/help_sleeping"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+                    <CheckBox
+                        android:id="@+id/play_noise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="-8dp"
+                        android:text="@string/play_noise" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -63,9 +71,9 @@
         android:id="@+id/sleep_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:layout_gravity="end|bottom"
-        tools:text="@string/sleeping_start"
-        tools:icon="@drawable/ic_play" />
+        android:layout_margin="16dp"
+        tools:icon="@drawable/ic_play"
+        tools:text="@string/sleeping_start" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
